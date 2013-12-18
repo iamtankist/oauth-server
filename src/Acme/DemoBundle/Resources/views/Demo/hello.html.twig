@@ -1,0 +1,25 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{# {% block title "Hello " ~ name %} #}
+{% set title = 'gago' %}
+
+{% block content %}
+    <h1>Hello456 {{ name }}!</h1>
+
+    {{ 'HTTP1.1 (Hypertext Transfer ProTocol) defined in RFC 2616)'|title }}
+
+
+
+    {% set var1, var2 = 'foo', 'bar' %}
+
+
+
+    <hr>
+        {{ form_label(form.email, 'Custom') }}
+        {{ form_widget(form.email, {'attr': {'label':'My custom label'}}) }}
+
+    <hr>
+
+{% endblock %}
+
+{% set code = code(_self) %}

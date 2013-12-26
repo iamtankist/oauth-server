@@ -13,3 +13,5 @@ parameters:
 
     locale:            en
     secret:            TokenHasBeenChanged
+
+    doctrine.orm.metadata.driver_chain.class: Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain

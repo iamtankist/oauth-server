@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="platform.entity.user.class">StarkIndustries\IronWallBundle\Entity\User</parameter>
+        <parameter key="platform.user.provider.class">StarkIndustries\IronWallBundle\Provider\UserProvider</parameter>
+    </parameters>
+
+    <services>
+        <service id="platform.user.manager" class="Doctrine\ORM\EntityManager"
+                 factory-service="doctrine" factory-method="getManagerForClass">
+            <argument>%platform.entity.user.class%</argument>
+        </service>
+
+        <service id="platform.user.repository"
+                 class="StarkIndustries\IronWallBundle\Repository\UserRepository"
+                 factory-service="platform.user.manager" factory-method="getRepository">
+            <argument>%platform.entity.user.class%</argument>
+        </service>
+
+        <service id="platform.user.provider" class="%platform.user.provider.class%">
+            <argument type="service" id="platform.user.repository" />
+        </service>
+
+        <service id="platform.grant_type.api_key" class="StarkIndustries\IronWallBundle\OAuth\ApiKeyGrantExtension">
+            <tag name="fos_oauth_server.grant_extension" uri="http://platform.local/grants/api_key" />
+            <argument type="service" id="platform.user.repository"/>
+        </service>
+    </services>
+</container>

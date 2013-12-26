@@ -66,9 +66,9 @@ swiftmailer:
 
 fos_oauth_server:
     db_driver: orm
-    client_class:        Acme\DemoBundle\Entity\Client
-    access_token_class:  Acme\DemoBundle\Entity\AccessToken
-    refresh_token_class: Acme\DemoBundle\Entity\RefreshToken
-    auth_code_class:     Acme\DemoBundle\Entity\AuthCode
+    client_class:        StarkIndustries\IronWallBundle\Entity\Client
+    access_token_class:  StarkIndustries\IronWallBundle\Entity\AccessToken
+    refresh_token_class: StarkIndustries\IronWallBundle\Entity\RefreshToken
+    auth_code_class:     StarkIndustries\IronWallBundle\Entity\AuthCode
     service:
         user_provider: platform.user.provider

@@ -13,7 +13,6 @@ security:
         user_provider:
             id: platform.user.provider
 
-
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/

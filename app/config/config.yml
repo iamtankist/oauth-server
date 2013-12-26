@@ -72,5 +72,3 @@ fos_oauth_server:
     auth_code_class:     Acme\DemoBundle\Entity\AuthCode
     service:
         user_provider: platform.user.provider
-        options:
-            supported_scopes: user

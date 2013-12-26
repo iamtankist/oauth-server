@@ -19,6 +19,7 @@ class CreateUserCommand extends ContainerAwareCommand
             ->setDescription('Creates a new user')
             ->addArgument('username',null, InputArgument::REQUIRED, 'Specify username')
             ->addArgument('password',null, InputArgument::REQUIRED, 'Specify password')
+            ->addArgument('apikey',null, InputArgument::REQUIRED, 'Specify API key')
             ->setHelp(
                 <<<EOT
                     The <info>%command.name%</info>command creates a new user.
@@ -39,6 +40,7 @@ EOT
         $user->setUsername($input->getArgument('username'));
 
         $user->setSalt(md5(uniqid()));
+        $user->setApiKey($input->getArgument('apikey'));
 
         $encoder = $encoderService->getEncoder($user);
         $user->setPassword($encoder->encodePassword($input->getArgument('password'), $user->getSalt()));
@@ -47,9 +49,9 @@ EOT
         $userManager->flush();
         $output->writeln(
             sprintf(
-                'Added a new user with public id <info>%s</info>, username <info>%s</info>',
-                $user->getId(),
-                $user->getUsername()
+                'Added a new user with username <info>%s</info>, and API key <info>%s</info>',
+                $user->getUsername(),
+                $user->getApiKey()
             )
         );
     }
